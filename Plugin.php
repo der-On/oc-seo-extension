@@ -109,7 +109,7 @@ class Plugin extends PluginBase
     public function register()
     {
         \Event::listen('backend.form.extendFields', function ($widget) {
-            if (PluginManager::instance()->hasPlugin('RainLab.Pages') && $widget->model instanceof \RainLab\Pages\Classes\Page) {
+            if (PluginManager::instance()->hasPlugin('RainLab.Pages') && $widget->model instanceof \RainLab\Pages\Classes\Page && !$widget->isNested) {
                 $widget->addFields([
                         'viewBag[seo_title]' => [
                         'label'   => 'anandpatel.seoextension::lang.editor.meta_title',
@@ -161,7 +161,7 @@ class Plugin extends PluginBase
                 'primary');
             }
 
-            if (PluginManager::instance()->hasPlugin('RainLab.Blog') && $widget->model instanceof \RainLab\Blog\Models\Post) {
+            if (PluginManager::instance()->hasPlugin('RainLab.Blog') && $widget->model instanceof \RainLab\Blog\Models\Post && !$widget->isNested) {
                 $widget->addFields([
                         'seo_title' => [
                             'label'   => 'anandpatel.seoextension::lang.editor.meta_title',
